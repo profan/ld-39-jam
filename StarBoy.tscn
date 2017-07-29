@@ -1,7 +1,0 @@
-[gd_scene format=1]
-
-[node name="StarBoy" type="AnimatedSprite"]
-
-animation = "default"
-
-
