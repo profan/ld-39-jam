@@ -1,0 +1,7 @@
+[gd_scene format=1]
+
+[node name="GingerbreadMan" type="AnimatedSprite"]
+
+animation = "default"
+
+
