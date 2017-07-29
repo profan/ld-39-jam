@@ -15,12 +15,22 @@ func _ready():
 	rect.size.y = floor(rand_range(32, 64))
 	rot_vel = deg2rad(floor(rand_range(1, max_rot_vel)))
 	set_fixed_process(true)
+	
+func wrap(v, v_min, v_max):
+	if v < v_min:
+		return v_max - 1
+	elif v > v_max:
+		return v_min - 1
+	else:
+		return v
 
 func _fixed_process(delta):
-	#var cur_pos = get_pos()
-	#cur_pos.x = cur_pos.x % get_viewport().get_rect().size.x
-	#cur_pos.y = cur_pos.y % get_viewport().get_rect().size.y
-	#set_pos(cur_pos)
+	
+	var cur_pos = get_pos()
+	cur_pos.x = wrap(cur_pos.x, 1, get_viewport().get_rect().size.x)
+	cur_pos.y = wrap(cur_pos.y, 1, get_viewport().get_rect().size.y)
+	set_pos(cur_pos)
+	
 	self.move(velocity)
 	self.rotate(rot_vel)
 
