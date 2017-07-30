@@ -43,11 +43,11 @@ func _fixed_process(delta):
 		is_moving = false
 		
 	if Input.is_action_pressed("player_attack_primary"):
-		left_gun.fire(ship_vel, -ship_dir)
-		right_gun.fire(ship_vel, -ship_dir)
+		left_gun.fire(delta, ship_vel, -ship_dir)
+		right_gun.fire(delta, ship_vel, -ship_dir)
 	elif Input.is_action_pressed("player_attack_secondary"):
 		pass
-	
+
 	if Input.is_action_pressed("player_switch_up"):
 		pass
 	elif Input.is_action_pressed("player_switch_down"):

@@ -8,11 +8,12 @@ onready var sprite = get_node("Sprite")
 func _ready():
 	set_fixed_process(true)
 	
-func fire(vel, dir, speed):
-	velocity = vel + (dir * speed)
+func fire(delta, vel, dir, speed):
+	velocity = (dir * (speed * delta)) + (dir * vel.length())
+	sprite.rotate(dir.angle())
 	
 func _fixed_process(delta):
-	move(velocity * delta)
+	move(velocity)
 	lifetime -= delta
 	if lifetime <= 0:
 		queue_free()
