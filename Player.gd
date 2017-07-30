@@ -3,6 +3,8 @@ extends KinematicBody2D
 onready var sprite = get_node("Sprite")
 onready var camera = get_node("Camera2D")
 onready var particles = get_node("Sprite/Particles2D")
+onready var left_gun = get_node("Sprite/LeftGun")
+onready var right_gun = get_node("Sprite/RightGun")
 
 var mov_speed = 64 # pixels per second
 var ship_vel = Vector2(0, 0)
@@ -41,10 +43,11 @@ func _fixed_process(delta):
 		is_moving = false
 		
 	if Input.is_action_pressed("player_attack_primary"):
-		pass
+		left_gun.fire(ship_vel, -ship_dir)
+		right_gun.fire(ship_vel, -ship_dir)
 	elif Input.is_action_pressed("player_attack_secondary"):
 		pass
-		
+	
 	if Input.is_action_pressed("player_switch_up"):
 		pass
 	elif Input.is_action_pressed("player_switch_down"):

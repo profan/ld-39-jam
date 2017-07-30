@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/player_ship.tex" type="Texture" id=2]
-[ext_resource path="res://raw/exhaust.png" type="Texture" id=3]
+[ext_resource path="res://Gun.gd" type="Script" id=3]
+[ext_resource path="res://raw/exhaust.png" type="Texture" id=4]
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -17,6 +18,16 @@ script/script = ExtResource( 1 )
 
 texture = ExtResource( 2 )
 
+[node name="LeftGun" type="Sprite" parent="Sprite"]
+
+transform/pos = Vector2( -13.0319, -4.86733 )
+script/script = ExtResource( 3 )
+
+[node name="RightGun" type="Sprite" parent="Sprite"]
+
+transform/pos = Vector2( 12.0375, -4.97201 )
+script/script = ExtResource( 3 )
+
 [node name="Particles2D" type="Particles2D" parent="Sprite"]
 
 transform/pos = Vector2( 0, 13.1031 )
@@ -24,7 +35,7 @@ config/amount = 256
 config/lifetime = 2.0
 config/process_mode = 1
 config/local_space = false
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 24.0
 params/linear_velocity = 32.0
