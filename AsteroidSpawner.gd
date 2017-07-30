@@ -26,8 +26,8 @@ func _fixed_process(delta):
 		var new_asteroid = Asteroid.instance()
 		
 		randomize()
-		var x = floor(rand_range(1, get_viewport().get_rect().size.x))
-		var y = floor(rand_range(1, get_viewport().get_rect().size.y))
+		var x = floor(rand_range(-2000, 2000))
+		var y = floor(rand_range(-2000, 2000))
 		var spawn_pos = Vector2(x, y)
 		
 		new_asteroid.set_pos(spawn_pos)

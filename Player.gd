@@ -2,15 +2,17 @@ extends KinematicBody2D
 
 onready var sprite = get_node("Sprite")
 onready var camera = get_node("Camera2D")
+onready var particles = get_node("Sprite/Particles2D")
 
 var mov_speed = 64 # pixels per second
 var ship_vel = Vector2(0, 0)
 var ship_max_vel = 100 # pixels per second
 var ship_accel = 25 # pixels per second.. per second?
 var ship_turn_speed = deg2rad(360) # degrees per second.. i guess?
+var ship_dir = Vector2(1, 0)
 var ship_mass = 61
 
-var ship_dir = Vector2(1, 0)
+var is_moving = false
 
 func _ready():
 	set_fixed_process(true)
@@ -31,9 +33,12 @@ func _fixed_process(delta):
 	turn_towards(delta, get_global_mouse_pos())
 
 	if Input.is_action_pressed("player_move_forwards"):
+		is_moving = true
 		mov_delta += -ship_dir
 	elif Input.is_action_pressed("player_move_backwards"):
 		mov_delta += ship_dir
+	else:
+		is_moving = false
 		
 	if Input.is_action_pressed("player_attack_primary"):
 		pass
@@ -53,3 +58,5 @@ func _fixed_process(delta):
 	
 	self.move(ship_vel)
 	ship_vel = ship_vel / (delta * ship_mass)
+	
+	particles.set_emitting(is_moving)

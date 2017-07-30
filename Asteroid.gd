@@ -9,8 +9,8 @@ var max_rot_vel = 2.5 # degrees per second
 
 func _ready():
 	randomize()
-	# velocity.x = floor(rand_range(-max_vel, max_vel))
-	# velocity.y = floor(rand_range(-max_vel, max_vel))
+	velocity.x = floor(rand_range(-max_vel, max_vel))
+	velocity.y = floor(rand_range(-max_vel, max_vel))
 	rect.size.x = floor(rand_range(32, 64))
 	rect.size.y = floor(rand_range(32, 64))
 	rect.pos.x = -rect.size.x / 2

@@ -27,7 +27,11 @@ func _draw():
 		var s_x = s_mw + (ent_pos.x / vp_rect.size.x) - (cam_pos.x / vp_rect.size.x) + 32
 		var s_y = s_mh + (ent_pos.y / vp_rect.size.y) - (cam_pos.y / vp_rect.size.y) + 32
 		
-		if ent.type() == "Asteroid":
-			draw_rect(Rect2(s_x, s_y, 2, 2), Color(1, 1, 1))
-		elif ent.type() == "PowerStation":
-			draw_rect(Rect2(s_x, s_y, 4, 4), Color(0, 0, 1))
+		var rect = Rect2(Vector2(48, 48), Vector2(vp_rect.size.x - 32, vp_rect.size.y - 32))
+		if rect.has_point(Vector2(s_x, s_y)):
+			if ent.type() == "Asteroid":
+				draw_rect(Rect2(s_x, s_y, 2, 2), Color(1, 1, 1))
+			elif ent.type() == "PowerStation":
+				draw_rect(Rect2(s_x, s_y, 4, 4), Color(0, 0, 1))
+			elif ent.type() == "EnemyGrunt":
+				draw_rect(Rect2(s_x, s_y, 2, 2), Color(1, 0, 0))

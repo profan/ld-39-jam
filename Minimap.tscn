@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://MinimapControl.gd" type="Script" id=1]
 [ext_resource path="res://Minimap.gd" type="Script" id=2]
 [ext_resource path="res://MinimapTarget.gd" type="Script" id=3]
-[ext_resource path="res://Drawer.gd" type="Script" id=4]
+[ext_resource path="res://raw/minimap.png" type="Texture" id=4]
+[ext_resource path="res://Drawer.gd" type="Script" id=5]
 
 [node name="MinimapControl" type="CanvasLayer"]
 
@@ -42,7 +43,7 @@ stretch_mode = 0
 rect = Rect2( 0, 0, 128, 128 )
 own_world = false
 world = null
-transparent_bg = false
+transparent_bg = true
 render_target/enabled = true
 render_target/v_flip = false
 render_target/clear_on_new_frame = false
@@ -55,8 +56,13 @@ physics/object_picking = false
 gui/disable_input = false
 script/script = ExtResource( 3 )
 
+[node name="Sprite" type="Sprite" parent="Minimap/Viewport"]
+
+transform/pos = Vector2( 96, 96 )
+texture = ExtResource( 4 )
+
 [node name="Drawer" type="Node2D" parent="Minimap/Viewport"]
 
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
 
