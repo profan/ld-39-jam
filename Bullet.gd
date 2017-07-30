@@ -9,9 +9,9 @@ func _ready():
 	set_fixed_process(true)
 	
 func fire(delta, vel, dir, speed):
-	velocity = (dir * (speed * delta)) + (dir * vel.length())
+	velocity = (vel.length() * dir + (dir * speed * delta))
 	sprite.rotate(dir.angle())
-	
+
 func _fixed_process(delta):
 	move(velocity)
 	lifetime -= delta

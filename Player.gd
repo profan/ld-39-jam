@@ -12,7 +12,7 @@ var mov_speed = 64 # pixels per second
 var ship_vel = Vector2(0, 0)
 var ship_max_vel = 100 # pixels per second
 var ship_accel = 25 # pixels per second.. per second?
-var ship_turn_speed = deg2rad(360) # degrees per second.. i guess?
+var ship_turn_speed = deg2rad(180) # degrees per second.. i guess?
 var ship_dir = Vector2(1, 0)
 var ship_mass = 61
 
