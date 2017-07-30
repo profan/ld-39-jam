@@ -18,6 +18,9 @@ func _ready():
 	rot_vel = deg2rad(floor(rand_range(1, max_rot_vel)))
 	set_fixed_process(true)
 	
+func type():
+	return "Asteroid"
+	
 func wrap(v, v_min, v_max):
 	if v < v_min:
 		return v_max - 1

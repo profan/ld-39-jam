@@ -8,5 +8,5 @@ func _ready():
 func init(ents):
 	child.init(ents)
 	
-func it_changed(new_pos):
-	child.it_changed(new_pos)
+func it_changed():
+	child.it_changed()

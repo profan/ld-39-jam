@@ -27,16 +27,10 @@ func collect_entities():
 	
 func _fixed_process(delta):
 	collect_entities()
-	
-func _get_camera_center():
-	var vtrans = get_canvas_transform()
-	var top_left = -vtrans.get_origin() / vtrans.get_scale()
-	var vsize = get_viewport_rect().size
-	return top_left + 0.5*vsize/vtrans.get_scale()
 
 func _draw():
 	if entities.size() > 0:
 		render_target.render_target_clear()
-		render_target.it_changed(_get_camera_center())
+		render_target.it_changed()
 		# gc the shit out of em
 		collect_entities()

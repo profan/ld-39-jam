@@ -10,7 +10,7 @@ var current_threshold = 5
 var spawn_delay = 1 # seconds
 
 # deps
-onready var map = get_parent().get_node("Minimap")
+onready var map = get_parent().get_node("MinimapControl")
 
 func _ready():
 	set_fixed_process(true)
