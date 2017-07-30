@@ -34,6 +34,16 @@ func _fixed_process(delta):
 		mov_delta += -ship_dir
 	elif Input.is_action_pressed("player_move_backwards"):
 		mov_delta += ship_dir
+		
+	if Input.is_action_pressed("player_attack_primary"):
+		pass
+	elif Input.is_action_pressed("player_attack_secondary"):
+		pass
+		
+	if Input.is_action_pressed("player_switch_up"):
+		pass
+	elif Input.is_action_pressed("player_switch_down"):
+		pass
 
 	sprite.set_rot(ship_dir.angle())
 
