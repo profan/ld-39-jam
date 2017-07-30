@@ -11,7 +11,7 @@ func _ready():
 	set_fixed_process(true)
 	tex_frame.set_texture(render_target.get_render_target_texture())
 	render_target.init(entities)
-	tex_frame.set_pos(Vector2(32, 32))
+	set_pos(Vector2(32, 32))
 
 func register_entity(e):
 	entities.append(weakref(e))

@@ -27,7 +27,6 @@ script/script = ExtResource( 2 )
 
 [node name="TextureFrame" type="TextureFrame" parent="Minimap"]
 
-rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
