@@ -33,6 +33,7 @@ func turn_towards(delta, pos):
 	
 	left_particles.set_param(Particles2D.PARAM_LINEAR_VELOCITY, 400 * abs(ca))
 	right_particles.set_param(Particles2D.PARAM_LINEAR_VELOCITY, 400 * abs(ca))
+	
 	if ca < -0.01:
 		left_particles.set_emitting(false)
 		right_particles.set_emitting(true)

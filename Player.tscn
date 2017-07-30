@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/player_ship.tex" type="Texture" id=2]
 [ext_resource path="res://Gun.gd" type="Script" id=3]
 [ext_resource path="res://raw/exhaust.png" type="Texture" id=4]
+[ext_resource path="res://ThrusterScript.gd" type="Script" id=5]
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -53,10 +54,14 @@ params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 
-[node name="LeftThruster" type="Particles2D" parent="Sprite"]
+[node name="RightThruster" type="Node2D" parent="Sprite"]
 
-transform/pos = Vector2( -6.55412, -9.38138 )
-transform/rot = -45.0
+transform/pos = Vector2( -14.2811, 9.39949 )
+script/script = ExtResource( 5 )
+
+[node name="thruster_one" type="Particles2D" parent="Sprite/RightThruster"]
+
+transform/pos = Vector2( 28.5622, 0.278895 )
 config/amount = 16
 config/lifetime = 0.3
 config/process_mode = 1
@@ -77,10 +82,61 @@ params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 
-[node name="RightThruster" type="Particles2D" parent="Sprite"]
+[node name="thruster_two" type="Particles2D" parent="Sprite/RightThruster"]
 
-transform/pos = Vector2( 6.55411, -9.31712 )
-transform/rot = 45.0
+transform/pos = Vector2( -0.306683, -8.52128 )
+transform/rot = 180.0
+config/amount = 16
+config/lifetime = 0.3
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 10.0
+params/linear_velocity = 60.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="LeftThruster" type="Node2D" parent="Sprite"]
+
+transform/pos = Vector2( -14.2811, 9.39949 )
+script/script = ExtResource( 5 )
+
+[node name="thruster_one" type="Particles2D" parent="Sprite/LeftThruster"]
+
+transform/pos = Vector2( 28.8689, -8.9075 )
+transform/rot = 180.0
+config/amount = 16
+config/lifetime = 0.3
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 10.0
+params/linear_velocity = 60.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="thruster_two" type="Particles2D" parent="Sprite/LeftThruster"]
+
 config/amount = 16
 config/lifetime = 0.3
 config/process_mode = 1
