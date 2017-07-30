@@ -2,7 +2,9 @@ extends KinematicBody2D
 
 onready var sprite = get_node("Sprite")
 onready var camera = get_node("Camera2D")
-onready var particles = get_node("Sprite/Particles2D")
+onready var left_particles = get_node("Sprite/LeftThruster")
+onready var right_particles = get_node("Sprite/RightThruster")
+onready var engine_particles = get_node("Sprite/Engine")
 onready var left_gun = get_node("Sprite/LeftGun")
 onready var right_gun = get_node("Sprite/RightGun")
 
@@ -18,6 +20,8 @@ var is_moving = false
 
 func _ready():
 	set_fixed_process(true)
+	left_particles.set_emitting(false)
+	right_particles.set_emitting(false)
 	
 func turn_towards(delta, pos):
 	
@@ -26,6 +30,18 @@ func turn_towards(delta, pos):
 
 	var as = asin(cpd)
 	var ca = clamp(as, (-ship_turn_speed) * delta, (ship_turn_speed) * delta)
+	
+	left_particles.set_param(Particles2D.PARAM_LINEAR_VELOCITY, 400 * abs(ca))
+	right_particles.set_param(Particles2D.PARAM_LINEAR_VELOCITY, 400 * abs(ca))
+	if ca < -0.01:
+		left_particles.set_emitting(false)
+		right_particles.set_emitting(true)
+	elif ca > 0.01:
+		left_particles.set_emitting(true)
+		right_particles.set_emitting(false)
+	else:
+		left_particles.set_emitting(false)
+		right_particles.set_emitting(false)
 
 	ship_dir = ship_dir.rotated(-ca)
 	
@@ -62,4 +78,4 @@ func _fixed_process(delta):
 	self.move(ship_vel)
 	ship_vel = ship_vel / (delta * ship_mass)
 	
-	particles.set_emitting(is_moving)
+	engine_particles.set_emitting(is_moving)
