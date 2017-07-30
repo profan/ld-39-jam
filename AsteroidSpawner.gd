@@ -9,6 +9,9 @@ var current_threshold = 5
 # delay between each spawn of asteroid
 var spawn_delay = 1 # seconds
 
+# deps
+onready var map = get_parent().get_node("Minimap")
+
 func _ready():
 	set_fixed_process(true)
 
@@ -27,8 +30,8 @@ func _fixed_process(delta):
 		var y = floor(rand_range(1, get_viewport().get_rect().size.y))
 		var spawn_pos = Vector2(x, y)
 		
-		print(spawn_pos)
 		new_asteroid.set_pos(spawn_pos)
 		get_parent().add_child(new_asteroid) # add to tree
+		map.register_entity(new_asteroid) # register with minimap
 		
 		total_asteroids += 1

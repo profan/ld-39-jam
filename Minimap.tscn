@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://MinimapControl.gd" type="Script" id=1]
+[ext_resource path="res://Minimap.gd" type="Script" id=2]
+[ext_resource path="res://MinimapTarget.gd" type="Script" id=3]
+[ext_resource path="res://Drawer.gd" type="Script" id=4]
+
+[node name="MinimapControl" type="CanvasLayer"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 1 )
+
+[node name="Minimap" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+
+[node name="TextureFrame" type="TextureFrame" parent="Minimap"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 128.0
+margin/bottom = 128.0
+stretch_mode = 0
+
+[node name="Viewport" type="Viewport" parent="Minimap"]
+
+rect = Rect2( 0, 0, 128, 128 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = true
+render_target/v_flip = false
+render_target/clear_on_new_frame = false
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 3
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+script/script = ExtResource( 3 )
+
+[node name="Drawer" type="Node2D" parent="Minimap/Viewport"]
+
+script/script = ExtResource( 4 )
+
+

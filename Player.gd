@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var sprite = get_node("Sprite")
+onready var camera = get_node("Camera2D")
 
 var mov_speed = 64 # pixels per second
 var ship_vel = Vector2(0, 0)
@@ -16,7 +17,7 @@ func _ready():
 	
 func turn_towards(delta, pos):
 	
-	var target_dir = (pos - get_pos()).normalized()
+	var target_dir = (pos - get_global_pos()).normalized()
 	var cpd = target_dir.dot(ship_dir.rotated(deg2rad(90)))
 
 	var as = asin(cpd)
@@ -27,7 +28,7 @@ func turn_towards(delta, pos):
 func _fixed_process(delta):
 	
 	var mov_delta = Vector2(0, 0)
-	turn_towards(delta, get_viewport().get_mouse_pos())
+	turn_towards(delta, get_global_mouse_pos())
 
 	if Input.is_action_pressed("player_move_forwards"):
 		mov_delta += -ship_dir
