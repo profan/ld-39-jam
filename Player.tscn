@@ -21,12 +21,12 @@ texture = ExtResource( 2 )
 
 [node name="LeftGun" type="Sprite" parent="Sprite"]
 
-transform/pos = Vector2( -13.0319, -4.86733 )
+transform/pos = Vector2( -12.5228, -4.92389 )
 script/script = ExtResource( 3 )
 
 [node name="RightGun" type="Sprite" parent="Sprite"]
 
-transform/pos = Vector2( 12.0375, -4.97201 )
+transform/pos = Vector2( 12.4714, -4.99753 )
 script/script = ExtResource( 3 )
 
 [node name="Engine" type="Particles2D" parent="Sprite"]

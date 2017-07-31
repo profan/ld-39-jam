@@ -15,7 +15,7 @@ func fire(delta, vel, dir):
 	if gun_cooldown <= 0:
 		var new_bullet = Bullet.instance()
 		var gun_pos = get_global_pos()
-		new_bullet.set_pos(gun_pos)
+		new_bullet.set_pos(gun_pos + vel)
 		get_tree().get_root().add_child(new_bullet)
 		new_bullet.fire(delta, vel, dir, 512)
 		gun_cooldown += gun_delay

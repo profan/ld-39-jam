@@ -35,10 +35,25 @@ scroll/limit_begin = Vector2( 0, 0 )
 scroll/limit_end = Vector2( 0, 0 )
 scroll/ignore_camera_zoom = true
 
+[node name="ParallaxLayer 2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+transform/rot = 90.0
+motion/scale = Vector2( 0.5, 0.5 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer 2"]
+
+texture = ExtResource( 5 )
+region = true
+region_rect = Rect2( 0, 0, 8192, 8192 )
+
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
-motion/scale = Vector2( 0.25, 0.25 )
-motion/offset = Vector2( 0, 0 )
+visibility/opacity = 0.5
+visibility/self_opacity = 0.5
+motion/scale = Vector2( 0.45, 0.45 )
+motion/offset = Vector2( 128, 128 )
 motion/mirroring = Vector2( 0, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]

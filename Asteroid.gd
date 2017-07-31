@@ -40,4 +40,5 @@ func _fixed_process(delta):
 	self.rotate(rot_vel)
 
 func _draw():
-	draw_rect(rect, Color(1, 1, 1))
+	pass
+	#draw_rect(rect, Color(1, 1, 1))
