@@ -11,9 +11,17 @@ func _ready():
 func fire(delta, vel, dir, speed):
 	velocity = (vel.length() * dir + (dir * speed * delta))
 	sprite.rotate(dir.angle())
+	
+func type():
+	return "Enemy"
 
 func _fixed_process(delta):
+	
 	move(velocity)
 	lifetime -= delta
+	
+	if is_colliding():
+		var e = get_collider()
+	
 	if lifetime <= 0:
 		queue_free()

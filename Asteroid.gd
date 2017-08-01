@@ -6,6 +6,7 @@ var rot_vel = 0
 
 var max_vel = 6 # pixels per second?
 var max_rot_vel = 2.5 # degrees per second 
+var health = 100
 
 func _ready():
 	randomize()
@@ -28,6 +29,9 @@ func wrap(v, v_min, v_max):
 		return v_min - 1
 	else:
 		return v
+		
+func explode():
+	queue_free()
 
 func _fixed_process(delta):
 	
@@ -35,6 +39,14 @@ func _fixed_process(delta):
 	# cur_pos.x = wrap(cur_pos.x, 1, get_viewport().get_rect().size.x)
 	# cur_pos.y = wrap(cur_pos.y, 1, get_viewport().get_rect().size.y)
 	# set_pos(cur_pos)
+	
+	if is_colliding():
+		var e = get_collider()
+		if e.type() == "Bullet":
+			health -= 25
+			
+	if health <= 0:
+		explode()
 	
 	self.move(velocity)
 	self.rotate(rot_vel)
