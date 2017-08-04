@@ -10,6 +10,7 @@ extents = Vector2( 0.99762, 3.98857 )
 
 [node name="Bullet" type="KinematicBody2D"]
 
+transform/rot = 180.0
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )

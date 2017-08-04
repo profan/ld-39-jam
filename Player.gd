@@ -22,7 +22,7 @@ func _ready():
 	set_fixed_process(true)
 	left_particles.set_emitting(false)
 	right_particles.set_emitting(false)
-	
+
 func turn_towards(delta, pos):
 	
 	var target_dir = (pos - get_global_pos()).normalized()
@@ -45,12 +45,12 @@ func turn_towards(delta, pos):
 		right_particles.set_emitting(false)
 
 	ship_dir = ship_dir.rotated(-ca)
-	
+
 func _fixed_process(delta):
 	
 	var mov_delta = Vector2(0, 0)
 	turn_towards(delta, get_global_mouse_pos())
-
+	
 	if Input.is_action_pressed("player_move_forwards"):
 		is_moving = true
 		mov_delta += -ship_dir
@@ -58,7 +58,7 @@ func _fixed_process(delta):
 		mov_delta += ship_dir
 	else:
 		is_moving = false
-		
+	
 	if Input.is_action_pressed("player_attack_primary"):
 		left_gun.fire(delta, ship_vel, -ship_dir)
 		right_gun.fire(delta, ship_vel, -ship_dir)

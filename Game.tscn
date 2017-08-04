@@ -69,5 +69,6 @@ region_rect = Rect2( 0, 0, 8192, 8192 )
 [node name="EnemyGrunt" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 127.878, -20.3627 )
+transform/scale = Vector2( 1.5, 1.5 )
 
 
