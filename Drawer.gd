@@ -22,8 +22,6 @@ func _draw():
 	
 	for e in entities:
 		var ent = e.get_ref()
-		if ent == null:
-			continue
 		
 		var ent_pos = ent.get_global_pos()
 		var s_mw = vp_rect.size.x / 2
