@@ -19,8 +19,12 @@ func _draw():
 	var p_mw = ((vp_rect.size.x / 2) - 1) + 32
 	var p_mh = ((vp_rect.size.y / 2) - 1) + 32
 	draw_rect(Rect2(p_mw, p_mh, 2, 2), Color(0, 1, 0))
+	
 	for e in entities:
 		var ent = e.get_ref()
+		if ent == null:
+			continue
+		
 		var ent_pos = ent.get_global_pos()
 		var s_mw = vp_rect.size.x / 2
 		var s_mh = vp_rect.size.y / 2

@@ -13,7 +13,7 @@ func fire(delta, vel, dir, speed):
 	sprite.rotate(dir.angle())
 	
 func type():
-	return "Enemy"
+	return "Bullet"
 
 func _fixed_process(delta):
 	

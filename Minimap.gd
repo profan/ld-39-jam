@@ -22,9 +22,15 @@ func collect_entities():
 	for i in range(0, entities.size()):
 		if not entities[i].get_ref():
 			if to_remove == null:
+				print ("create")
 				to_remove = Array()
-			to_remove.push_back(i)
-	
+			to_remove.push_back(entities[i])
+	# pass down updated
+	if to_remove != null:
+		for e in to_remove:
+			entities.erase(e)
+		render_target.init(entities)
+
 func _fixed_process(delta):
 	collect_entities()
 
