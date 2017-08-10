@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const km = preload("Kinematic.gd")
 
-var grunt_max_speed = 128 # pixels per second
+var grunt_max_speed = 256 # pixels per second
 var grunt_arrive_radius = 64
 var grunt_arrive_speed = 1
 var grunt_rot_speed = deg2rad(22.5) # degrees per second
