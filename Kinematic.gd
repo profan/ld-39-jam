@@ -23,14 +23,19 @@ class Kinematic:
 	func update(steering, delta):
 		
 		owner.move(velocity * delta)
-		owner.set_rot(velocity.normalized().angle())
-		# owner.rotate(rotation * delta)
+		if velocity.length() > 0:
+			owner.set_rot(velocity.normalized().angle())
+		
 		velocity += steering.velocity * delta
 		rotation += steering.rotation * delta
 		
-		# clip at kinematic
+		# clip at max speed
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
+
+class Steering:
+	var velocity = Vector2(0, 0)
+	var rotation = 0
 
 class Seek:
 	
@@ -38,18 +43,14 @@ class Seek:
 	var target
 	var max_rot_speed = deg2rad(64) # degrees per second
 	
-	# output here
-	var velocity = Vector2(0, 0)
-	var rotation = 0
-	
 	func _init(o):
 		owner = o
 	
-	func update():
+	func get_steering(s):
 		var tr = target.get_ref()
 		if tr:
 			# update velocity
-			velocity = tr.get_global_pos() - owner.get_global_pos()
+			s.velocity = tr.get_global_pos() - owner.get_global_pos()
 			# update orientation
 			#if velocity.length() > 0:
 			#	rotation = clamp(velocity.normalized().angle(), -max_rot_speed, max_rot_speed)
@@ -63,24 +64,23 @@ class Arrive:
 	
 	var owner
 	var target
-	var velocity = Vector2(0, 0)
-	var rotation = 0
 	
 	# custom
 	var radius = 0
-	var time_to_target = 1
+	var time_to_target = 0
 	
-	func _init(o, r):
+	func _init(o, r, a):
 		owner = o
 		radius = r
+		time_to_target = a
 	
-	func update():
+	func get_steering(s):
 		var tr = target.get_ref()
 		if tr:
-			if velocity.length() < radius:
-				velocity.x = 0
-				velocity.y = 0
-			velocity /= time_to_target
+			if s.velocity.length() < radius:
+				s.velocity.x = 0
+				s.velocity.y = 0
+			s.velocity /= time_to_target
 		else:
 			target = null
 	
