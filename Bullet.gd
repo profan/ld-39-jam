@@ -10,8 +10,8 @@ func _ready():
 	
 func fire(delta, vel, dir, speed):
 	velocity = (vel.length() * dir + (dir * speed * delta))
-	sprite.rotate(dir.angle())
-	
+	sprite.set_rot(dir.angle())
+
 func type():
 	return "Bullet"
 
