@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var ExplosionEffect = load("res://ExplosionEffect.tscn")
+
 var rect = Rect2(0, 0, 0, 0)
 var velocity = Vector2(0, 0)
 var rot_vel = 0
@@ -31,6 +33,10 @@ func wrap(v, v_min, v_max):
 		return v
 		
 func on_explode():
+	# create bullet impact
+	var new_ee = ExplosionEffect.instance()
+	get_tree().get_root().add_child(new_ee)
+	new_ee.set_global_pos(get_global_pos())
 	queue_free()
 	
 func do_damage(v):

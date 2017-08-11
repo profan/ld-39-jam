@@ -5,13 +5,13 @@ var BulletImpact = load("res://BulletImpact.tscn")
 var velocity = Vector2(1, 0)
 var lifetime = 16 # seconds
 
-var bullet_dmg = 0.25
+var bullet_dmg = 25
 
 onready var sprite = get_node("Sprite")
 
 func _ready():
 	set_fixed_process(true)
-	
+
 func fire(delta, vel, dir, speed):
 	velocity = (vel.length() * dir + (dir * speed * delta))
 	sprite.set_rot(dir.angle())
