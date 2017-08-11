@@ -30,8 +30,11 @@ func wrap(v, v_min, v_max):
 	else:
 		return v
 		
-func explode():
+func on_explode():
 	queue_free()
+	
+func do_damage(v):
+	health -= v
 
 func _fixed_process(delta):
 	
@@ -40,13 +43,8 @@ func _fixed_process(delta):
 	# cur_pos.y = wrap(cur_pos.y, 1, get_viewport().get_rect().size.y)
 	# set_pos(cur_pos)
 	
-	if is_colliding():
-		var e = get_collider()
-		if e.type() == "Bullet":
-			health -= 25
-			
 	if health <= 0:
-		explode()
+		on_explode()
 	
 	self.move(velocity)
 	self.rotate(rot_vel)
