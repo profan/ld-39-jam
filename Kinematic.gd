@@ -15,7 +15,7 @@ class Kinematic:
 		max_speed = m
 	
 	func get_position():
-		return owner.get_global_pos()
+		return owner.get_kinematic_position()
 	
 	func get_orientation():
 		return velocity.normalized()
@@ -50,7 +50,7 @@ class Seek:
 		var tr = target.get_ref()
 		if tr:
 			# update velocity
-			s.velocity = tr.get_global_pos() - owner.get_global_pos()
+			s.velocity = tr.get_kinematic_position() - owner.get_global_pos()
 			# update orientation
 			#if velocity.length() > 0:
 			#	rotation = clamp(velocity.normalized().angle(), -max_rot_speed, max_rot_speed)

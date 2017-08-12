@@ -28,6 +28,9 @@ func type():
 	
 func do_damage(v):
 	pass
+	
+func get_kinematic_position():
+	return get_global_pos() + ship_vel
 
 func turn_towards(delta, pos):
 	

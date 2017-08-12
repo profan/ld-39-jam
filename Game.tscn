@@ -72,6 +72,31 @@ region_rect = Rect2( 0, 0, 8192, 8192 )
 transform/pos = Vector2( 127.878, -20.3627 )
 transform/scale = Vector2( 1.5, 1.5 )
 
+[node name="EnemyGrunt1" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( -154.501, -21.5904 )
+transform/scale = Vector2( 1.5, 1.5 )
+
+[node name="EnemyGrunt2" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 361.148, -21.5904 )
+transform/scale = Vector2( 1.5, 1.5 )
+
+[node name="EnemyGrunt3" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 583.368, -24.0459 )
+transform/scale = Vector2( 1.5, 1.5 )
+
+[node name="EnemyGrunt4" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 878.024, -24.0459 )
+transform/scale = Vector2( 1.5, 1.5 )
+
+[node name="EnemyGrunt5" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( -374.266, -24.0459 )
+transform/scale = Vector2( 1.5, 1.5 )
+
 [node name="Missile" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( -494.716, 83.0652 )
