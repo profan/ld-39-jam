@@ -22,6 +22,12 @@ func _ready():
 	set_fixed_process(true)
 	left_particles.set_emitting(false)
 	right_particles.set_emitting(false)
+	
+func type():
+	return "Player"
+	
+func do_damage(v):
+	pass
 
 func turn_towards(delta, pos):
 	

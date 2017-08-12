@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/player_ship.tex" type="Texture" id=2]
@@ -6,11 +6,19 @@
 [ext_resource path="res://raw/exhaust.png" type="Texture" id=4]
 [ext_resource path="res://ThrusterScript.gd" type="Script" id=5]
 
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 14.9829, 14.1367 )
+
 [node name="Player" type="KinematicBody2D"]
 
 transform/scale = Vector2( 2, 2 )
 input/pickable = false
-collision/layers = 3
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
@@ -175,5 +183,11 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
 

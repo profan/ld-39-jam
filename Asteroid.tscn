@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 12.234, 13.1952 )
+extents = Vector2( 13.3341, 13.1952 )
 
 [node name="Asteroid" type="KinematicBody2D"]
 

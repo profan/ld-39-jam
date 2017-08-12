@@ -1,11 +1,15 @@
 extends KinematicBody2D
 
+var ExplosionEffect = load("res://ExplosionEffect.tscn")
+
 const km = preload("Kinematic.gd")
 
 var grunt_max_speed = 256 # pixels per second
 var grunt_arrive_radius = 64
 var grunt_arrive_speed = 1
 var grunt_rot_speed = deg2rad(22.5) # degrees per second
+
+var health = 100
 
 var cur_kinematic
 var steering
@@ -15,7 +19,6 @@ var s_arrive
 func _ready():
 	var t = get_tree().get_root().get_node("Game/MinimapControl").register_entity(self)
 	set_fixed_process(true)
-	set_process(true)
 	
 	cur_kinematic = km.Kinematic.new(self, grunt_max_speed)
 	steering = km.Steering.new()
@@ -27,8 +30,15 @@ func _ready():
 	s_seek.set_target(player)
 	s_arrive.set_target(player)
 	
+func on_explode():
+	# create explosion effect
+	var new_ee = ExplosionEffect.instance()
+	get_tree().get_root().add_child(new_ee)
+	new_ee.set_global_pos(get_global_pos())
+	queue_free()
+	
 func do_damage(v):
-	pass
+	health -= v
 
 func type():
 	return "Enemy"
@@ -38,6 +48,9 @@ func _fixed_process(delta):
 	s_arrive.get_steering(steering)
 	cur_kinematic.update(steering, delta)
 	
+	if health <= 0:
+		on_explode()
+
 func _process(delta):
 	pass
 	# rotate(grunt_rot_speed * delta)

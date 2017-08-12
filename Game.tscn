@@ -7,7 +7,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://raw/space.png" type="Texture" id=6]
 [ext_resource path="res://EnemyGrunt.tscn" type="PackedScene" id=7]
-[ext_resource path="res://BulletImpact.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Missile.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node"]
 
@@ -72,8 +72,6 @@ region_rect = Rect2( 0, 0, 8192, 8192 )
 transform/pos = Vector2( 127.878, -20.3627 )
 transform/scale = Vector2( 1.5, 1.5 )
 
-[node name="BulletImpact" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 53.4955, -25.9372 )
+[node name="Missile" parent="." instance=ExtResource( 8 )]
 
 

@@ -35,5 +35,5 @@ func _draw():
 				draw_rect(Rect2(s_x, s_y, 2, 2), Color(1, 1, 1))
 			elif ent.type() == "PowerStation":
 				draw_rect(Rect2(s_x, s_y, 4, 4), Color(0, 0, 1))
-			elif ent.type() == "EnemyGrunt":
+			elif ent.type() == "Enemy":
 				draw_rect(Rect2(s_x, s_y, 2, 2), Color(1, 0, 0))

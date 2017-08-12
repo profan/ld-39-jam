@@ -1,0 +1,59 @@
+extends KinematicBody2D
+
+const km = preload("Kinematic.gd")
+var MissileImpact = load("res://MissileImpact.tscn")
+
+var missile_max_speed = 384 # pixels per second
+var missile_arrive_radius = 64
+var missile_arrive_speed = 1
+var missile_rot_speed = deg2rad(22.5) # degrees per second
+var missile_dmg = 100
+
+var cur_kinematic
+var steering
+var s_seek
+var s_arrive
+
+func _ready():
+	set_fixed_process(true)
+	
+	cur_kinematic = km.Kinematic.new(self, missile_max_speed)
+	steering = km.Steering.new()
+	
+	s_seek = km.Seek.new(self)
+	s_arrive = km.Arrive.new(self, missile_arrive_radius, missile_arrive_speed)
+	
+	var player = get_tree().get_root().get_node("Game/Player")
+	s_seek.set_target(player)
+	s_arrive.set_target(player)
+	
+func on_impact(e):
+	
+	# create bullet impact
+	var new_mi = MissileImpact.instance()
+	# e.add_child(new_mi)
+	get_tree().get_root().add_child(new_mi)
+	#new_bi.set_global_pos(get_collision_pos() + velocity/2)
+	new_mi.set_scale(Vector2(1.5, 1.5)) # when missile, larger effect
+	new_mi.set_global_pos(get_collision_pos())
+	
+	# align along "hit normal, the lazy way"
+	new_mi.set_global_rot((-get_collision_normal()).angle())
+	
+	# new_bi.rotate(deg2rad(180))
+	
+	# damage and free
+	e.do_damage(missile_dmg)
+	queue_free()
+	
+func _fixed_process(delta):
+	s_seek.get_steering(steering)
+	s_arrive.get_steering(steering)
+	cur_kinematic.update(steering, delta)
+	
+	if is_colliding():
+		var e = get_collider()
+		on_impact(e)
+	
+func type():
+	return "Missile"
