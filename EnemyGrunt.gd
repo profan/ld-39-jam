@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var area = get_node("Area2D")
 onready var gun = get_node("Ship/Gun")
+onready var launcher = get_node("Ship/MissileLauncher")
 
 var ExplosionEffect = load("res://ExplosionEffect.tscn")
 
@@ -65,6 +66,9 @@ func _fixed_process(delta):
 	s_arrive.get_steering(steering)
 	cur_kinematic.update(steering, delta)
 	
+	# pass on velocity
+	launcher.set_velocity(cur_kinematic.velocity)
+	
 	if player_in_cone:
 		gun.fire(delta, cur_kinematic.velocity * delta, cur_kinematic.get_orientation())
 	
@@ -73,4 +77,3 @@ func _fixed_process(delta):
 
 func _process(delta):
 	pass
-	# rotate(grunt_rot_speed * delta)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://EnemyGrunt.gd" type="Script" id=1]
 [ext_resource path="res://raw/enemy_grunt.png" type="Texture" id=2]
 [ext_resource path="res://raw/exhaust.png" type="Texture" id=3]
 [ext_resource path="res://Gun.gd" type="Script" id=4]
+[ext_resource path="res://MissileLauncher.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -68,6 +69,11 @@ params/anim_initial_pos = 0.0
 
 transform/pos = Vector2( 0, 12.2383 )
 script/script = ExtResource( 4 )
+
+[node name="MissileLauncher" type="Node2D" parent="Ship"]
+
+transform/pos = Vector2( 1.3176, 15.4159 )
+script/script = ExtResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

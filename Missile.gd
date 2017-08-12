@@ -40,9 +40,15 @@ func _ready():
 	s_seek.set_target(player)
 	s_arrive.set_target(player)
 	
+	player.on_enemy_missile_lock(self)
+	connect("exit_tree", player, "on_enemy_missile_lock_lost", [self])
+	
 	# base death timer on lifetime
 	death_time = ps.get_lifetime()
 	
+func set_velocity(vel):
+	cur_kinematic.velocity = vel
+
 func on_impact(e, is_bullet):
 	
 	# create bullet impact

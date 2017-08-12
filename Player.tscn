@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/player_ship.tex" type="Texture" id=2]
 [ext_resource path="res://Gun.gd" type="Script" id=3]
 [ext_resource path="res://raw/exhaust.png" type="Texture" id=4]
 [ext_resource path="res://ThrusterScript.gd" type="Script" id=5]
+[ext_resource path="res://sounds/engine.wav" type="Sample" id=6]
+[ext_resource path="res://sounds/friendly_blip.wav" type="Sample" id=7]
+[ext_resource path="res://sounds/select_blip.wav" type="Sample" id=8]
+[ext_resource path="res://sounds/warning_beep.wav" type="Sample" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -30,6 +34,39 @@ points = Vector2Array( 3.76748, 13.2396, -2.6136, -3.10647, 1.0577, -3.01906 )
 
 custom_solver_bias = 0.0
 points = Vector2Array( 13.645, 9.30603, 3.76748, 13.2396, 5.42831, -1.44565, 13.7324, 0.302593 )
+
+[sub_resource type="SampleLibrary" id=6]
+
+samples/engine = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/friendly_blip = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+samples/select_blip = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+samples/warning_beep = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+samples/warning_beep2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -223,5 +260,22 @@ build_mode = 0
 polygon = Vector2Array( -7.7709, -11.5854, -7.94572, -1.096, -16.075, 0.215181, -16.075, 9.1312, -5.41078, 13.4144, 3.76748, 13.2396, 13.645, 9.30603, 13.7324, 0.302593, 5.42831, -1.44565, 5.25348, -11.498, 1.0577, -3.01906, -2.6136, -3.10647 )
 shape_range = Vector2( 0, 4 )
 trigger = false
+
+[node name="SamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 2
+config/samples = SubResource( 6 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 
