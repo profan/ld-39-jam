@@ -3,6 +3,9 @@ extends KinematicBody2D
 const km = preload("Kinematic.gd")
 var MissileImpact = load("res://MissileImpact.tscn")
 
+onready var sprite = get_node("Sprite")
+onready var ps = get_node("Particles2D")
+
 var missile_max_speed = 384 # pixels per second
 var missile_arrive_radius = 64
 var missile_arrive_speed = 1
@@ -13,6 +16,15 @@ var cur_kinematic
 var steering
 var s_seek
 var s_arrive
+
+# is dead?
+var is_dead = false
+
+# time to die
+var death_time = 1
+
+# current timer
+var death_timer = 0
 
 func _ready():
 	set_fixed_process(true)
@@ -26,6 +38,9 @@ func _ready():
 	var player = get_tree().get_root().get_node("Game/Player")
 	s_seek.set_target(player)
 	s_arrive.set_target(player)
+	
+	# base death timer on lifetime
+	death_time = ps.get_lifetime()
 	
 func on_impact(e, is_bullet):
 	
@@ -44,13 +59,25 @@ func on_impact(e, is_bullet):
 		new_mi.set_global_rot(get_global_rot())
 		new_mi.rotate(deg2rad(180))
 	
-	# new_bi.rotate(deg2rad(180))
-	
 	# damage and free
 	e.do_damage(missile_dmg)
-	queue_free()
+	
+	# hide missile, keep particles until dedness
+	queue_death()
+
+func queue_death():
+	sprite.hide()
+	ps.set_emitting(false)
+	is_dead = true
 	
 func _fixed_process(delta):
+	
+	if is_dead:
+		death_timer += delta
+		if death_timer >= death_time:
+			queue_free()
+		return
+	
 	s_seek.get_steering(steering)
 	s_arrive.get_steering(steering)
 	cur_kinematic.update(steering, delta)
