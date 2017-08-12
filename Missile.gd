@@ -41,7 +41,6 @@ func _ready():
 	s_arrive.set_target(player)
 	
 	player.on_enemy_missile_lock(self)
-	connect("exit_tree", player, "on_enemy_missile_lock_lost", [self])
 	
 	# base death timer on lifetime
 	death_time = ps.get_lifetime()
@@ -76,6 +75,7 @@ func queue_death():
 	sprite.hide()
 	ps.set_emitting(false)
 	cs.queue_free() # kill it
+	get_tree().get_root().get_node("Game/Player").on_enemy_missile_lock_lost(self)
 	is_dead = true
 	
 func _fixed_process(delta):

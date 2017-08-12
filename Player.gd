@@ -47,7 +47,7 @@ func on_enemy_missile_lock_lost(m):
 	enemy_missiles.erase(m)
 	missiles_locked_on -= 1
 	if missiles_locked_on <= 0:
-		audio.stop_all()
+		pass
 
 func turn_towards(delta, pos):
 	
