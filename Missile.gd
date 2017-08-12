@@ -5,6 +5,7 @@ var MissileImpact = load("res://MissileImpact.tscn")
 
 onready var sprite = get_node("Sprite")
 onready var ps = get_node("Particles2D")
+onready var cs = get_node("CollisionShape2D")
 
 var missile_max_speed = 384 # pixels per second
 var missile_arrive_radius = 64
@@ -68,6 +69,7 @@ func on_impact(e, is_bullet):
 func queue_death():
 	sprite.hide()
 	ps.set_emitting(false)
+	cs.queue_free() # kill it
 	is_dead = true
 	
 func _fixed_process(delta):
