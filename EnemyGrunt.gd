@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+onready var area = get_node("Area2D")
+onready var gun = get_node("Ship/Gun")
+
 var ExplosionEffect = load("res://ExplosionEffect.tscn")
 
 const km = preload("Kinematic.gd")
@@ -16,6 +19,8 @@ var steering
 var s_seek
 var s_arrive
 
+var player_in_cone = false
+
 func _ready():
 	var t = get_tree().get_root().get_node("Game/MinimapControl").register_entity(self)
 	set_fixed_process(true)
@@ -29,6 +34,18 @@ func _ready():
 	var player = get_tree().get_root().get_node("Game/Player")
 	s_seek.set_target(player)
 	s_arrive.set_target(player)
+	
+	# firing cone!
+	area.connect("body_enter", self, "on_body_enter")
+	area.connect("body_exit", self, "on_body_exit")
+	
+func on_body_enter(b):
+	if b.type() == "Player":
+		player_in_cone = true
+
+func on_body_exit(b):
+	if b.type() == "Player":
+		player_in_cone = false
 	
 func on_explode():
 	# create explosion effect
@@ -47,6 +64,9 @@ func _fixed_process(delta):
 	s_seek.get_steering(steering)
 	s_arrive.get_steering(steering)
 	cur_kinematic.update(steering, delta)
+	
+	if player_in_cone:
+		gun.fire(delta, cur_kinematic.velocity * delta, cur_kinematic.get_orientation())
 	
 	if health <= 0:
 		on_explode()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/player_ship.tex" type="Texture" id=2]
@@ -6,19 +6,51 @@
 [ext_resource path="res://raw/exhaust.png" type="Texture" id=4]
 [ext_resource path="res://ThrusterScript.gd" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 14.9829, 14.1367 )
+points = Vector2Array( 1.0577, -3.01906, 5.25348, -11.498, 5.42831, -1.44565, 3.76748, 13.2396 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -7.94572, -1.096, -7.7709, -11.5854, -2.6136, -3.10647, 3.76748, 13.2396, -5.41078, 13.4144 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16.075, 9.1312, -16.075, 0.215181, -7.94572, -1.096, -5.41078, 13.4144 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 3.76748, 13.2396, -2.6136, -3.10647, 1.0577, -3.01906 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 13.645, 9.30603, 3.76748, 13.2396, 5.42831, -1.44565, 13.7324, 0.302593 )
 
 [node name="Player" type="KinematicBody2D"]
 
 transform/scale = Vector2( 2, 2 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 1.13636, -0.699295 )
 shapes/0/trigger = false
-collision/layers = 1
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 1.13636, -0.699295 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 3 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 1.13636, -0.699295 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 4 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 1.13636, -0.699295 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 5 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 1.13636, -0.699295 )
+shapes/4/trigger = false
+collision/layers = 3
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
@@ -29,12 +61,12 @@ texture = ExtResource( 2 )
 
 [node name="LeftGun" type="Sprite" parent="Sprite"]
 
-transform/pos = Vector2( -12.5228, -4.92389 )
+transform/pos = Vector2( -12.4756, -6.0575 )
 script/script = ExtResource( 3 )
 
 [node name="RightGun" type="Sprite" parent="Sprite"]
 
-transform/pos = Vector2( 12.4714, -4.99753 )
+transform/pos = Vector2( 12.3297, -5.98944 )
 script/script = ExtResource( 3 )
 
 [node name="Engine" type="Particles2D" parent="Sprite"]
@@ -184,10 +216,12 @@ drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
-shape = SubResource( 1 )
+transform/pos = Vector2( 1.13636, -0.699295 )
+build_mode = 0
+polygon = Vector2Array( -7.7709, -11.5854, -7.94572, -1.096, -16.075, 0.215181, -16.075, 9.1312, -5.41078, 13.4144, 3.76748, 13.2396, 13.645, 9.30603, 13.7324, 0.302593, 5.42831, -1.44565, 5.25348, -11.498, 1.0577, -3.01906, -2.6136, -3.10647 )
+shape_range = Vector2( 0, 4 )
 trigger = false
-_update_shape_index = 0
 
 

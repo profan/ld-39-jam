@@ -52,7 +52,7 @@ class Seek:
 			# update velocity
 			s.velocity = tr.get_kinematic_position() - owner.get_global_pos()
 			# update orientation
-			#if velocity.length() > 0:
+			# if velocity.length() > 0:
 			#	rotation = clamp(velocity.normalized().angle(), -max_rot_speed, max_rot_speed)
 		else:
 			target = null

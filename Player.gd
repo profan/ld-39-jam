@@ -79,7 +79,7 @@ func _fixed_process(delta):
 	elif Input.is_action_pressed("player_switch_down"):
 		pass
 
-	sprite.set_rot(ship_dir.angle())
+	set_rot(ship_dir.angle())
 
 	var new_vel = (ship_vel + (mov_delta * (delta * ship_accel))).clamped(ship_max_vel)
 	var diff = new_vel - ship_vel

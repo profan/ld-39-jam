@@ -48,7 +48,7 @@ func _fixed_process(delta):
 	if is_colliding():
 		var e = get_collider()
 		var e_t = e.type()
-		if e_t == "Asteroid" or e_t == "Enemy" or e_t == "PowerStation":
+		if e_t == "Asteroid" or e_t == "Enemy" or e_t == "PowerStation" or e_t == "Player":
 			on_impact(e)
 	
 	if lifetime <= 0:
