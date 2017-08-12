@@ -8,6 +8,9 @@ func _ready():
 	var n = r.get_node("Game/MinimapControl")
 	n.register_entity(self)
 	set_process(true)
+	
+func do_damage(v):
+	pass
 
 func type():
 	return "PowerStation"

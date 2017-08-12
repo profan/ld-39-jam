@@ -25,7 +25,8 @@ func on_impact(e):
 	var new_bi = BulletImpact.instance()
 	e.add_child(new_bi)
 	# get_tree().get_root().add_child(new_bi)
-	new_bi.set_global_pos(get_collision_pos() + velocity/2)
+	#new_bi.set_global_pos(get_collision_pos() + velocity/2)
+	new_bi.set_global_pos(get_collision_pos())
 	
 	# align along "hit normal, the lazy way"
 	new_bi.set_global_rot((-get_collision_normal()).angle())
@@ -43,7 +44,8 @@ func _fixed_process(delta):
 	
 	if is_colliding():
 		var e = get_collider()
-		if e.type() == "Asteroid":
+		var e_t = e.type()
+		if e_t == "Asteroid" or e_t == "Enemy" or e_t == "PowerStation":
 			on_impact(e)
 	
 	if lifetime <= 0:

@@ -26,9 +26,12 @@ func _ready():
 	var player = get_tree().get_root().get_node("Game/Player")
 	s_seek.set_target(player)
 	s_arrive.set_target(player)
+	
+func do_damage(v):
+	pass
 
 func type():
-	return "EnemyGrunt"
+	return "Enemy"
 	
 func _fixed_process(delta):
 	s_seek.get_steering(steering)
