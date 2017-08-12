@@ -6,7 +6,7 @@
 [node name="ExplosionEffect" type="Sprite"]
 
 texture = ExtResource( 1 )
-hframes = 12
+hframes = 15
 region_rect = Rect2( 0, 0, 32, 32 )
 script/script = ExtResource( 2 )
 
