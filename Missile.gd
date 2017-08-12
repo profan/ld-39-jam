@@ -27,7 +27,7 @@ func _ready():
 	s_seek.set_target(player)
 	s_arrive.set_target(player)
 	
-func on_impact(e):
+func on_impact(e, is_bullet):
 	
 	# create bullet impact
 	var new_mi = MissileImpact.instance()
@@ -37,8 +37,12 @@ func on_impact(e):
 	new_mi.set_scale(Vector2(1.5, 1.5)) # when missile, larger effect
 	new_mi.set_global_pos(get_collision_pos())
 	
-	# align along "hit normal, the lazy way"
-	new_mi.set_global_rot((-get_collision_normal()).angle())
+	if not is_bullet:
+		# align along "hit normal, the lazy way"
+		new_mi.set_global_rot((-get_collision_normal()).angle())
+	else:
+		new_mi.set_global_rot(get_global_rot())
+		new_mi.rotate(deg2rad(180))
 	
 	# new_bi.rotate(deg2rad(180))
 	
@@ -53,7 +57,11 @@ func _fixed_process(delta):
 	
 	if is_colliding():
 		var e = get_collider()
-		on_impact(e)
+		var e_t = e.type()
+		if e_t == "Bullet":
+			on_impact(e, true)
+		elif e_t != "Missile":
+			on_impact(e, false)
 	
 func type():
 	return "Missile"

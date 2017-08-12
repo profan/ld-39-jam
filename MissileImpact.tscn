@@ -17,8 +17,8 @@ hframes = 5
 
 transform/pos = Vector2( 0.130829, -3.26887 )
 transform/rot = -180.0
-config/amount = 32
-config/lifetime = 4.0
+config/amount = 8
+config/lifetime = 2.0
 config/time_scale = 2.0
 config/process_mode = 1
 config/explosiveness = 0.1

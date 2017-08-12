@@ -25,7 +25,7 @@ transform/pos = Vector2( 119.085, -182.303 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 92.7742, 71.7896 )
+transform/pos = Vector2( 92.7742, 1023.01 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -73,5 +73,43 @@ transform/pos = Vector2( 127.878, -20.3627 )
 transform/scale = Vector2( 1.5, 1.5 )
 
 [node name="Missile" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( -494.716, 83.0652 )
+
+[node name="Missile2" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( -298.447, 258.752 )
+
+[node name="Missile3" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 23.9903, 342.962 )
+
+[node name="Missile4" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 337.516, 416.822 )
+
+[node name="Missile5" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 744.497, 386.675 )
+
+[node name="Missile6" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 972.105, 74.6563 )
+
+[node name="Missile7" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 920.856, -183.098 )
+
+[node name="Missile8" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 735.453, -300.671 )
+
+[node name="Missile9" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 346.56, -311.222 )
+
+[node name="Missile1" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( -380.718, -157.427 )
 
 

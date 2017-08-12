@@ -19,6 +19,9 @@ func fire(delta, vel, dir, speed):
 func type():
 	return "Bullet"
 	
+func do_damage(v):
+	lifetime = 0
+	
 func on_impact(e):
 	
 	# create bullet impact

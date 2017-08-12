@@ -10,7 +10,7 @@ var done = false
 
 func _ready():
 	set_process(true)
-	total_time = sprite.get_hframes() * frames_per_second + 1.5 # 4 extra seconds for particle blast
+	total_time = sprite.get_hframes() * frames_per_second + 0.75 # 4 extra seconds for particle blast
 	ps.set_process(false)
 
 func _process(delta):
