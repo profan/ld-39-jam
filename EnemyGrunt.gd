@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
-onready var area = get_node("Area2D")
 onready var gun = get_node("Ship/Gun")
 onready var launcher = get_node("Ship/MissileLauncher")
+onready var firing_area = get_node("FiringCone")
+onready var avoid_area = get_node("AvoidCone")
 
 var ExplosionEffect = load("res://ExplosionEffect.tscn")
 
@@ -19,6 +20,7 @@ var cur_kinematic
 var steering
 var s_seek
 var s_arrive
+var s_avoid
 
 var player_in_cone = false
 
@@ -31,20 +33,21 @@ func _ready():
 	
 	s_seek = km.Seek.new(self)
 	s_arrive = km.Arrive.new(self, grunt_arrive_radius, grunt_arrive_speed)
+	s_avoid = km.Avoid.new(self, avoid_area)
 	
 	var player = get_tree().get_root().get_node("Game/Player")
 	s_seek.set_target(player)
 	s_arrive.set_target(player)
 	
 	# firing cone!
-	area.connect("body_enter", self, "on_body_enter")
-	area.connect("body_exit", self, "on_body_exit")
+	firing_area.connect("body_enter", self, "on_body_enter_firing_cone")
+	firing_area.connect("body_exit", self, "on_body_exit_firing_cone")
 	
-func on_body_enter(b):
+func on_body_enter_firing_cone(b):
 	if b.type() == "Player":
 		player_in_cone = true
 
-func on_body_exit(b):
+func on_body_exit_firing_cone(b):
 	if b.type() == "Player":
 		player_in_cone = false
 	
@@ -61,9 +64,14 @@ func do_damage(v):
 func type():
 	return "Enemy"
 	
+func get_kinematic_position():
+	return get_global_pos() + cur_kinematic.velocity
+	
 func _fixed_process(delta):
+	
 	s_seek.get_steering(steering)
 	s_arrive.get_steering(steering)
+	s_avoid.get_steering(steering)
 	cur_kinematic.update(steering, delta)
 	
 	# pass on velocity

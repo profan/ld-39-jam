@@ -23,6 +23,7 @@ class Kinematic:
 	func update(steering, delta):
 		
 		owner.move(velocity * delta)
+		# owner.set_pos(owner.get_pos() + velocity * delta)
 		if velocity.length() > 0:
 			owner.set_rot(velocity.normalized().angle())
 		
@@ -58,7 +59,10 @@ class Seek:
 			target = null
 	
 	func set_target(t):
-		target = weakref(t)
+		if t != null:
+			target = weakref(t)
+		else:
+			target = null
 		
 class Arrive:
 	
@@ -86,6 +90,43 @@ class Arrive:
 	
 	func set_target(t):
 		target = weakref(t)
+
+class AvoidTarget:
+	
+	var position
+	
+	func _init(p):
+		position = p
+	
+	func get_kinematic_position():
+		return position
+
+class Avoid extends Seek:
+	
+	var avoid_target = AvoidTarget.new(Vector2(0, 0))
+	var avoid_distance = 128
+	
+	func _init(o, a).(o):
+		a.connect("body_enter_shape", self, "on_body_enter_feeler")
+		a.connect("body_exit_shape", self, "on_body_exit_feeler")
+	
+	func set_turn_direction(body, id):
+		var cp = body.get_collision_pos()
+		var cn = body.get_collision_normal()
+		avoid_target.position = cp + cn * avoid_distance
+	
+	func on_body_enter_feeler(body_id, body, body_shape, area_shape):
+		set_turn_direction(body, area_shape)
+		.set_target(avoid_target)
+		print("Y", area_shape)
+	
+	func on_body_exit_feeler(body_id, body, body_shape, area_shape):
+		.set_target(null)
+		print("N", area_shape)
+		
+	func get_steering(s):
+		if target == null: return
+		return .get_steering(s)
 
 class Flee:
 	func init():
