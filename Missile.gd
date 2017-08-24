@@ -18,7 +18,6 @@ var cur_kinematic
 var steering
 var s_seek
 var s_arrive
-var s_avoid
 
 # is dead?
 var is_dead = false
@@ -37,7 +36,6 @@ func _ready():
 	
 	s_seek = km.Seek.new(self)
 	s_arrive = km.Arrive.new(self, missile_arrive_radius, missile_arrive_speed)
-	s_avoid = km.Avoid.new(self, avoid_area)
 	
 	var player = get_tree().get_root().get_node("Game/Player")
 	s_seek.set_target(player)
@@ -91,7 +89,6 @@ func _fixed_process(delta):
 	
 	s_seek.get_steering(steering)
 	s_arrive.get_steering(steering)
-	s_avoid.get_steering(steering)
 	cur_kinematic.update(steering, delta)
 	
 	if is_colliding():

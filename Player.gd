@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var ExplosionEffect = load("res://ExplosionEffect.tscn")
+
 onready var sprite = get_node("Sprite")
 onready var camera = get_node("Camera2D")
 onready var left_particles = get_node("Sprite/LeftThruster")
@@ -16,6 +18,9 @@ var ship_accel = 25 # pixels per second.. per second?
 var ship_turn_speed = deg2rad(180) # degrees per second.. i guess?
 var ship_dir = Vector2(1, 0)
 var ship_mass = 61
+
+var ship_health = 100
+var player_is_dead = false
 
 var is_moving = false
 var missiles_locked_on = 0
@@ -34,7 +39,7 @@ func type():
 	return "Player"
 	
 func do_damage(v):
-	pass
+	ship_health -= v
 	
 func get_kinematic_position():
 	return get_global_pos() + ship_vel
@@ -79,8 +84,21 @@ func get_closest_missile_distance():
 		if mis_dist < min_dist:
 			min_dist = mis_dist
 	return min_dist
+	
+func player_explode():
+	# create explosion effect
+	var new_ee = ExplosionEffect.instance()
+	get_tree().get_root().add_child(new_ee)
+	new_ee.set_global_pos(get_global_pos())
+	player_is_dead = true
 
 func _fixed_process(delta):
+	
+	if ship_health <= 0 and not player_is_dead:
+		player_explode()
+	
+	if player_is_dead:
+		return
 	
 	var mov_delta = Vector2(0, 0)
 	turn_towards(delta, get_global_mouse_pos())

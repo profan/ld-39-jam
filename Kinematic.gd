@@ -48,6 +48,7 @@ class Seek:
 		owner = o
 	
 	func get_steering(s):
+		if target == null: return
 		var tr = target.get_ref()
 		if tr:
 			# update velocity
@@ -79,6 +80,7 @@ class Arrive:
 		time_to_target = a
 	
 	func get_steering(s):
+		if target == null: return
 		var tr = target.get_ref()
 		if tr:
 			if s.velocity.length() < radius:

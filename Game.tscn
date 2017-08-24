@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Minimap.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://raw/space.png" type="Texture" id=6]
 [ext_resource path="res://EnemyGrunt.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Missile.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node"]
 
@@ -71,89 +70,5 @@ region_rect = Rect2( 0, 0, 8192, 8192 )
 
 transform/pos = Vector2( 127.878, -20.3627 )
 transform/scale = Vector2( 1.5, 1.5 )
-
-[node name="Missile" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -185.011, -27.2074 )
-
-[node name="Missile1" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -406.751, 14.9641 )
-
-[node name="Missile2" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -529.185, 130.596 )
-
-[node name="Missile3" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -635.294, 254.39 )
-
-[node name="Missile4" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -681.546, 423.076 )
-
-[node name="Missile5" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -872.16, 532.262 )
-
-[node name="Missile6" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -935.081, 743.232 )
-
-[node name="Missile7" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -935.081, 743.232 )
-
-[node name="Missile8" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 491.753, 33.61 )
-
-[node name="Missile9" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 802.924, 120.89 )
-
-[node name="Missile10" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 954.715, 219.554 )
-
-[node name="Missile11" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1106.51, 299.244 )
-
-[node name="Missile12" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1227.94, 420.677 )
-
-[node name="Missile13" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1356.96, 576.262 )
-
-[node name="Missile14" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1459.42, 716.669 )
-
-[node name="Missile15" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1573.26, 906.407 )
-
-[node name="Missile16" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1675.72, 1020.25 )
-
-[node name="Missile17" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1804.74, 1206.19 )
-
-[node name="Missile18" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -274.79, 48.7891 )
-
-[node name="Missile19" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -532.835, 348.576 )
-
-[node name="Missile20" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( -631.499, 591.441 )
 
 
