@@ -6,13 +6,15 @@ var velocity = Vector2(1, 0)
 var lifetime = 16 # seconds
 
 var bullet_dmg = 25
+var bullet_owner
 
 onready var sprite = get_node("Sprite")
 
 func _ready():
 	set_fixed_process(true)
 
-func fire(delta, vel, dir, speed):
+func fire(o, delta, vel, dir, speed):
+	bullet_owner = o
 	velocity = (vel.length() * dir + (dir * speed * delta))
 	sprite.set_rot(dir.angle())
 
@@ -36,8 +38,12 @@ func on_impact(e):
 	
 	# new_bi.rotate(deg2rad(180))
 	
-	# damage and free
-	e.do_damage(bullet_dmg)
+	if bullet_owner == "Player" and e.type() == "Player":
+		pass
+	else:
+		# damage and free
+		e.do_damage(bullet_dmg)
+	
 	queue_free()
 
 func _fixed_process(delta):

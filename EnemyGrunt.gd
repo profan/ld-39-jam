@@ -28,6 +28,8 @@ func _ready():
 	var t = get_tree().get_root().get_node("Game/MinimapControl").register_entity(self)
 	set_fixed_process(true)
 	
+	gun.set_owner(type())
+	
 	cur_kinematic = km.Kinematic.new(self, grunt_max_speed)
 	steering = km.Steering.new()
 	

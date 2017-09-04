@@ -34,6 +34,8 @@ func _ready():
 	set_fixed_process(true)
 	left_particles.set_emitting(false)
 	right_particles.set_emitting(false)
+	left_gun.set_owner(type())
+	right_gun.set_owner(type())
 	
 func type():
 	return "Player"

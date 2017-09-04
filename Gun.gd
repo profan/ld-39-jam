@@ -6,12 +6,16 @@ var gun_cooldown = 0
 var gun_delay = 0.1125
 var gun_spread_max = deg2rad(4) # degrees max
 var gun_bullet_speed = 384
+var gun_owner
 
 func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
 	gun_cooldown = clamp(gun_cooldown - delta, 0, 1)
+	
+func set_owner(o):
+	gun_owner = o
 
 func fire(delta, vel, dir):
 	if gun_cooldown <= 0:
@@ -20,5 +24,5 @@ func fire(delta, vel, dir):
 		new_bullet.set_pos(gun_pos + vel)
 		get_tree().get_root().add_child(new_bullet)
 		var rot = rand_range(-gun_spread_max, gun_spread_max)
-		new_bullet.fire(delta, vel, dir.rotated(rot), gun_bullet_speed)
+		new_bullet.fire(gun_owner, delta, vel, dir.rotated(rot), gun_bullet_speed)
 		gun_cooldown += gun_delay
